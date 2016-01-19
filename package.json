@@ -1,0 +1,30 @@
+{
+  "name": "nt-imgupl",
+  "version": "1.0.0",
+  "description": "Image uploader as web-component for Synthetic.js",
+  "main": "dist/nt-imgupl.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --content-base public/ --port 6001"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/syntheticjs/nt-imgupl.git"
+  },
+  "author": "Vladimir Kalmykov <vladimirmorulus@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/syntheticjs/nt-imgupl/issues"
+  },
+  "homepage": "https://github.com/syntheticjs/nt-imgupl#readme",
+  "devDependencies": {
+    "autoprefixer": "^6.2.3",
+    "css-loader": "^0.23.1",
+    "postcss-loader": "^0.8.0",
+    "postcss-nested": "^1.0.0",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.10",
+    "webpack-dev-server": "^1.14.0"
+  }
+}

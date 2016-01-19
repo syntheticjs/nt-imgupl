@@ -1,0 +1,28 @@
+<img ng-if="$ngImgupl.thumbSrc" ng-src="{{$ngImgupl.thumbSrc}}" alt="">
+<!-- If loading -->
+<div ng-show="$ngImgupl.status==1">
+
+	<svg class="nt-imgupl-forcevis"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ei-spinner-3-icon" class="nt-imgupl-anim nt-imgupl-forcevis"></use></svg>
+</div>
+<!-- If empty -->
+<div ng-show="$ngImgupl.status==0">
+	
+</div>
+<!-- If error -->
+<div ng-show="$ngImgupl.status==2">
+	<svg class=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ei-image-icon" class="nt-imgupl-error" ></use></svg>
+	
+</div>
+<!-- Controls -->
+<div class="nt-imgupl-dashboard" ng-show="$ngImgupl.status===3">
+	<button ng-click="$ngImgupl.clear();"><svg class=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ei-close-icon"></use></svg></button>
+</div>
+<div>
+	<svg class=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ei-image-icon"></use></svg>
+	
+	<input type="file" />
+</div>
+
+
+
+

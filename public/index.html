@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="./vendor/angular/angular.js"></script>
+  <script src="./vendor/synthetic/dist/synthetic.js"></script>
+  <script src="nt-imgupl.js"></script>
+  <style>
+	nt-imgupl {
+		max-width:500px;
+	}
+  </style>
+ <script>
+		Synthetic
+		.getComponent('nt-imgupl')
+		.createPreset('test', function($config, $setup) {
+			// Configurate upload options
+			$setup({
+				postUpload: function(resolve, reject, b64data) {
+					Synthetic.ajax({
+						url: "http://127.0.0.1:6002/upload/",
+						data: {
+							type: 'image',
+							content: b64data
+						}
+					}).then(function() {
+						resolve(e);
+					}).catch(function(e) {
+						reject(e);
+					});
+				},
+				base64Upload: {
+					url: 'http://127.0.0.1:6002/upload/',
+					data: {
+						'type': 'base64image'
+					}
+				}
+			});
+		});
+ </script>
+</head>
+<body>
+  <content>
+	<nt-imgupl src="someimage.jpg" preset="test"><nt-imgupl>
+  </content>
+</body>
+</html>

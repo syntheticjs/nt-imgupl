@@ -1,0 +1,17 @@
+{
+  "name": "nt-imgupl",
+  "version": "1.0.0",
+  "authors": [
+    "Vladimir Morulus <vladimirmorulus@gmail.com>"
+  ],
+  "description": "Image uploader web-component",
+  "main": "dist/nt-imgupl.js",
+  "moduleType": [
+    "amd",
+    "globals"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "angular": "~1.4.8"
+  }
+}
