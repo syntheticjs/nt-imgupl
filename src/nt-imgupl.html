@@ -8,18 +8,13 @@
 <div ng-show="$ngImgupl.status==0">
 	
 </div>
-<!-- If error -->
-<div ng-show="$ngImgupl.status==2">
-	<svg class=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ei-image-icon" class="nt-imgupl-error" ></use></svg>
-	
-</div>
+
 <!-- Controls -->
 <div class="nt-imgupl-dashboard" ng-show="$ngImgupl.status===3">
 	<button ng-click="$ngImgupl.clear();"><svg class=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ei-close-icon"></use></svg></button>
 </div>
 <div>
-	<svg class=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ei-image-icon"></use></svg>
-	
+	<svg class="" ng-class="{'nt-imgupl-error': $ngImgupl.status==2}"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ei-image-icon"></use></svg>
 	<input type="file" />
 </div>
 

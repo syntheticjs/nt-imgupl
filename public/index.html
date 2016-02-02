@@ -17,18 +17,8 @@
 		.createPreset('test', function($config, $setup) {
 			// Configurate upload options
 			$setup({
-				postUpload: function(resolve, reject, b64data) {
-					Synthetic.ajax({
-						url: "http://127.0.0.1:6002/upload/",
-						data: {
-							type: 'image',
-							content: b64data
-						}
-					}).then(function() {
-						resolve(e);
-					}).catch(function(e) {
-						reject(e);
-					});
+				uploadBase64Content: function(resolve, reject, b64data) {
+					resolve(b64data)
 				},
 				base64Upload: {
 					url: 'http://127.0.0.1:6002/upload/',
@@ -42,7 +32,7 @@
 </head>
 <body>
   <content>
-	<nt-imgupl src="someimage.jpg" preset="test"><nt-imgupl>
+	<nt-imgupl src="someimage.jpg" preset="test"></nt-imgupl>
   </content>
 </body>
 </html>
