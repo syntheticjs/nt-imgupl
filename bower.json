@@ -12,7 +12,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "synthetic": "~0.1.0"
+    "synthetic": "syntheticjs/synthetic#dev"
   },
   "homepage": "https://github.com/syntheticjs/nt-imgupl",
   "keywords": [
