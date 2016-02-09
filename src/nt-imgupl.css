@@ -15,7 +15,19 @@ nt-imgupl {
     background-color: #DEDEDE;
     position: relative;
 
+
+
     >div {
+
+		>button {
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    opacity:0;
+		}
+
 		position:absolute;
 		min-width:100%;
 		min-height: 100%;
@@ -172,4 +184,21 @@ nt-imgupl {
 			}
 		}
 	}
+}
+
+.nt-imgupl-overlayer {
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    box-sizing: border-box;
+    padding: 20px;
+    >button {
+    	border:1px gray solid;
+    	line-height:30px;
+    	padding:0 15px;
+    	
+    }
 }

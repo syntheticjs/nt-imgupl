@@ -12,7 +12,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "synthetic": "syntheticjs/synthetic#dev"
+    "synthetic": "syntheticjs/synthetic#dev",
+    "nt-filemanager": "syntheticjs/nt-filemanager#master"
   },
   "homepage": "https://github.com/syntheticjs/nt-imgupl",
   "keywords": [

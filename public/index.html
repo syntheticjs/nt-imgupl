@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <script src="./vendor/angular/angular.js"></script>
+  <script src="./vendor/jquery/dist/jquery.js"></script>
+  <script src="./vendor/jquery.tie/jquery.tie.min.js"></script>
   <script src="./vendor/synthetic/dist/synthetic.js"></script>
+  <script src="./vendor/nt-filemanager/dist/nt-filemanager.js"></script>
+  <link rel="stylesheet" href="./vendor/nt-filemanager/dist/main.css">
   <script src="nt-imgupl.js"></script>
   <style>
 	nt-imgupl {
@@ -17,7 +21,7 @@
 		.createPreset('test', function($config, $setup) {
 			// Configurate upload options
 			$setup({
-				uploadBase64Content: function(resolve, reject, b64data) {
+				/*uploadBase64Content: function(resolve, reject, b64data) {
 					resolve(b64data)
 				},
 				base64Upload: {
@@ -25,6 +29,9 @@
 					data: {
 						'type': 'base64image'
 					}
+				},*/
+				filemanager: {
+					url: 'http://127.0.0.1:6007/testServer.json'
 				}
 			});
 		});

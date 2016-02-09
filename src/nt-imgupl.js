@@ -76,6 +76,7 @@ Synthetic.createComponent({
 		ssvg.style.display = 'none';
 		ssvg.innerHTML+='<symbol id="ei-spinner-3-icon" viewBox="0 0 50 50"><path d="M41.9 23.9c-.3-6.1-4-11.8-9.5-14.4-6-2.7-13.3-1.6-18.3 2.6-4.8 4-7 10.5-5.6 16.6 1.3 6 6 10.9 11.9 12.5 7.1 2 13.6-1.4 17.6-7.2-3.6 4.8-9.1 8-15.2 6.9-6.1-1.1-11.1-5.7-12.5-11.7-1.5-6.4 1.5-13.1 7.2-16.4 5.9-3.4 14.2-2.1 18.1 3.7 1 1.4 1.7 3.1 2 4.8.3 1.4.2 2.9.4 4.3.2 1.3 1.3 3 2.8 2.1 1.3-.8 1.2-2.5 1.1-3.8 0-.4.1.7 0 0z"></path></symbol><symbol id="ei-image-icon" viewBox="0 0 50 50"><path d="M39 38H11c-1.7 0-3-1.3-3-3V15c0-1.7 1.3-3 3-3h28c1.7 0 3 1.3 3 3v20c0 1.7-1.3 3-3 3zM11 14c-.6 0-1 .4-1 1v20c0 .6.4 1 1 1h28c.6 0 1-.4 1-1V15c0-.6-.4-1-1-1H11z"></path><path d="M30 24c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path><path d="M35.3 37.7L19 22.4 9.7 31l-1.4-1.4 10.7-10 17.7 16.7z"></path><path d="M40.4 32.7L35 28.3 30.5 32l-1.3-1.6 5.8-4.7 6.6 5.4z"></path></symbol><symbol id="ei-close-icon" viewBox="0 0 50 50"><path d="M37.304 11.282l1.414 1.414-26.022 26.02-1.414-1.413z"></path><path d="M12.696 11.282l26.022 26.02-1.414 1.415-26.022-26.02z"></path></symbol>';
 	});
+
 	/*
 	Setup default configuration for component including methods for images uploading
 	*/
@@ -93,6 +94,8 @@ Synthetic.createComponent({
 	*/
 	$init(function($scope, $self, $element, $config) {
 		
+		
+
 		$self.status = 0;
 		$self.thumbSrc = false;
 		$scope.$ngImgupl = $self;
@@ -101,14 +104,14 @@ Synthetic.createComponent({
 		.then(function(element) {
 
 			// Modern browsers
-			if (FileReader) {
+			/*if (FileReader) {
 				var input = angular.element(element).find('input');
 
 				input.bind('change', handleFileSelectFactory($self, function(target) {
 					
-					/*
-					Senf new image base64 data to the server
-					*/
+					
+					//Senf new image base64 data to the server
+					
 					$config(['uploadBase64Content'], function($warning, uploadBase64Content) {
 						Synthetic.pending(uploadBase64Content, [target])
 						.then(function(url) {
@@ -128,7 +131,7 @@ Synthetic.createComponent({
 			// Old browsers
 			} else {
 				
-			}
+			}*/
 		});
 
 		/*
@@ -167,6 +170,39 @@ Synthetic.createComponent({
 			$scope.$evalAsync(function() { 
 				$self.thumbSrc = false;
 				$self.status = 0;
+			});
+		},
+		filemanager: function($self, $scope) {
+			var overlayer = document.createElement('DIV');
+			overlayer.className = 'nt-imgupl-overlayer';
+			// Create overlayer
+			document.body.appendChild(overlayer);
+
+			// Create nt-filemanager
+			var filemanager = document.createElement('nt-filemanager');
+			this.$fetch(['$config.filemanager'], function(cfg) {
+				debugger;
+				Synthetic(filemanager)
+				.$setup($.extend({
+					receiver: function(data) {
+						$self.thumbSrc = data.files[0];
+						$self.status = 3;
+						overlayer.remove();
+						$self.$digest();
+					}
+				}, cfg));
+			});
+
+			overlayer.appendChild(filemanager);
+
+			// Create button
+			var button = document.createElement('BUTTON');
+			button.innerHTML = 'Вернуться назад';
+
+			overlayer.appendChild(button);
+			var component = this;
+			$(button).click(function() {
+				overlayer.remove();
 			});
 		}
 	});
