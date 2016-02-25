@@ -98,6 +98,7 @@ Synthetic.createComponent({
 
 		$self.status = 0;
 		$self.thumbSrc = false;
+		$self.model = false;
 		$scope.$ngImgupl = $self;
 		
 		$self.$template(template)
@@ -157,6 +158,42 @@ Synthetic.createComponent({
 				img.src = src;
 			});
 		});
+
+		/*
+		Watch width height
+		*/
+		$self.$watch('attributes', ['width', 'height'], function($element, width, height) {
+			if (width) $element.style.width = parseInt(width)+"px";
+			if (height) $element.style.height = parseInt(height)+"px";
+		});
+
+		/*
+		Watch model
+		*/
+		$self.$watch('attributes.ngModel', function(model) {
+			$self.model = model;
+			$self.$hitch(function() {
+				if (model)
+				return $self.$watch([model], function(src) {
+					var img = new Image();
+					$scope.$applyAsync(function() {
+						$self.status = 1;
+					});
+					img.onload = function() {
+						$scope.$applyAsync(function() {
+							$self.status = 3;
+							$self.thumbSrc = src;
+						});
+					};
+					img.onerror = function() {
+						$scope.$applyAsync(function() {
+							$self.status = 2;
+						});
+					};
+					img.src = src;
+				});
+			});
+		});
 	});
 	
 	/*
@@ -178,28 +215,50 @@ Synthetic.createComponent({
 			// Create overlayer
 			document.body.appendChild(overlayer);
 
+			//
+			overlayerDiv = document.createElement('DIV');
+			overlayer.appendChild(overlayerDiv);
+
 			// Create nt-filemanager
 			var filemanager = document.createElement('nt-filemanager');
 			this.$fetch(['$config.filemanager'], function(cfg) {
-				debugger;
+				
 				Synthetic(filemanager)
 				.$setup($.extend({
-					receiver: function(data) {
-						$self.thumbSrc = data.files[0];
-						$self.status = 3;
-						overlayer.remove();
-						$self.$digest();
-					}
+					employer: function() {
+						
+
+							$scope.$eval($self.model+'=data', {
+								data: this.selected.simplify("url")[0]
+							});
+							$self.status = 3;
+							overlayer.remove();
+							$scope.$document.$digest();
+						
+					},
+					advancedButtons: [
+						{
+							title: "Закрыть окно",
+							className: 'pointable nt-filemanager__textbutton nt-filemanager__topbar__itemright',
+							click: function() {
+								overlayer.remove();
+							}
+						}
+					],
+					maxEmployCount: 1,
+					allowFilesUpload: true,
+					allowDelete: true,
+					allowCreateNewFolder: true
 				}, cfg));
 			});
 
-			overlayer.appendChild(filemanager);
+			overlayerDiv.appendChild(filemanager);
 
 			// Create button
 			var button = document.createElement('BUTTON');
 			button.innerHTML = 'Вернуться назад';
 
-			overlayer.appendChild(button);
+			overlayerDiv.appendChild(button);
 			var component = this;
 			$(button).click(function() {
 				overlayer.remove();

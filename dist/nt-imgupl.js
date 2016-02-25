@@ -124,8 +124,15 @@ return /******/ (function(modules) { // webpackBootstrap
 		WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		*/
 		angular.element(document.body).ready(function() {
-			document.body.innerHTML+='<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="ei-sprite" style="display:none"><symbol id="ei-spinner-3-icon" viewBox="0 0 50 50"><path d="M41.9 23.9c-.3-6.1-4-11.8-9.5-14.4-6-2.7-13.3-1.6-18.3 2.6-4.8 4-7 10.5-5.6 16.6 1.3 6 6 10.9 11.9 12.5 7.1 2 13.6-1.4 17.6-7.2-3.6 4.8-9.1 8-15.2 6.9-6.1-1.1-11.1-5.7-12.5-11.7-1.5-6.4 1.5-13.1 7.2-16.4 5.9-3.4 14.2-2.1 18.1 3.7 1 1.4 1.7 3.1 2 4.8.3 1.4.2 2.9.4 4.3.2 1.3 1.3 3 2.8 2.1 1.3-.8 1.2-2.5 1.1-3.8 0-.4.1.7 0 0z"></path></symbol><symbol id="ei-image-icon" viewBox="0 0 50 50"><path d="M39 38H11c-1.7 0-3-1.3-3-3V15c0-1.7 1.3-3 3-3h28c1.7 0 3 1.3 3 3v20c0 1.7-1.3 3-3 3zM11 14c-.6 0-1 .4-1 1v20c0 .6.4 1 1 1h28c.6 0 1-.4 1-1V15c0-.6-.4-1-1-1H11z"></path><path d="M30 24c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path><path d="M35.3 37.7L19 22.4 9.7 31l-1.4-1.4 10.7-10 17.7 16.7z"></path><path d="M40.4 32.7L35 28.3 30.5 32l-1.3-1.6 5.8-4.7 6.6 5.4z"></path></symbol><symbol id="ei-close-icon" viewBox="0 0 50 50"><path d="M37.304 11.282l1.414 1.414-26.022 26.02-1.414-1.413z"></path><path d="M12.696 11.282l26.022 26.02-1.414 1.415-26.022-26.02z"></path></symbol></svg>';
+			var ssvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");http://www.w3.org/2000/svg
+			ssvg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
+			ssvg.setAttribute('id', 'ei-sprite');
+
+			document.body.appendChild(ssvg);
+			ssvg.style.display = 'none';
+			ssvg.innerHTML+='<symbol id="ei-spinner-3-icon" viewBox="0 0 50 50"><path d="M41.9 23.9c-.3-6.1-4-11.8-9.5-14.4-6-2.7-13.3-1.6-18.3 2.6-4.8 4-7 10.5-5.6 16.6 1.3 6 6 10.9 11.9 12.5 7.1 2 13.6-1.4 17.6-7.2-3.6 4.8-9.1 8-15.2 6.9-6.1-1.1-11.1-5.7-12.5-11.7-1.5-6.4 1.5-13.1 7.2-16.4 5.9-3.4 14.2-2.1 18.1 3.7 1 1.4 1.7 3.1 2 4.8.3 1.4.2 2.9.4 4.3.2 1.3 1.3 3 2.8 2.1 1.3-.8 1.2-2.5 1.1-3.8 0-.4.1.7 0 0z"></path></symbol><symbol id="ei-image-icon" viewBox="0 0 50 50"><path d="M39 38H11c-1.7 0-3-1.3-3-3V15c0-1.7 1.3-3 3-3h28c1.7 0 3 1.3 3 3v20c0 1.7-1.3 3-3 3zM11 14c-.6 0-1 .4-1 1v20c0 .6.4 1 1 1h28c.6 0 1-.4 1-1V15c0-.6-.4-1-1-1H11z"></path><path d="M30 24c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path><path d="M35.3 37.7L19 22.4 9.7 31l-1.4-1.4 10.7-10 17.7 16.7z"></path><path d="M40.4 32.7L35 28.3 30.5 32l-1.3-1.6 5.8-4.7 6.6 5.4z"></path></symbol><symbol id="ei-close-icon" viewBox="0 0 50 50"><path d="M37.304 11.282l1.414 1.414-26.022 26.02-1.414-1.413z"></path><path d="M12.696 11.282l26.022 26.02-1.414 1.415-26.022-26.02z"></path></symbol>';
 		});
+
 		/*
 		Setup default configuration for component including methods for images uploading
 		*/
@@ -142,35 +149,46 @@ return /******/ (function(modules) { // webpackBootstrap
 		Add initializing procedure
 		*/
 		$init(function($scope, $self, $element, $config) {
+			
+			
+
 			$self.status = 0;
 			$self.thumbSrc = false;
+			$self.model = false;
 			$scope.$ngImgupl = $self;
 			
 			$self.$template(template)
 			.then(function(element) {
 
-				var input = angular.element(element).find('input');
+				// Modern browsers
+				/*if (FileReader) {
+					var input = angular.element(element).find('input');
 
-				input.bind('change', handleFileSelectFactory($self, function(target) {
-					/*
-					Senf new image base64 data to the server
-					*/
-					$config(['postUpload'], function($warning, postUpload) {
-						postUpload()
-						.then(function(url) {
-							$self.thumbSrc = url;
-							$self.status = 3;
-						})
-						.catch(function(e) {
-							$warning(e);
+					input.bind('change', handleFileSelectFactory($self, function(target) {
+						
+						
+						//Senf new image base64 data to the server
+						
+						$config(['uploadBase64Content'], function($warning, uploadBase64Content) {
+							Synthetic.pending(uploadBase64Content, [target])
+							.then(function(url) {
+								$self.thumbSrc = url;
+								$self.status = 3;
+							})
+							.catch(function(e) {
+								$warning(e);
+							});
 						});
-					});
 
-					$self.$apply(function() {
-						$self.thumbSrc = target;
-						$self.status = 3;
-					});
-				}));
+						$self.$apply(function() {
+							$self.thumbSrc = target;
+							$self.status = 3;
+						});
+					}));
+				// Old browsers
+				} else {
+					
+				}*/
 			});
 
 			/*
@@ -179,16 +197,57 @@ return /******/ (function(modules) { // webpackBootstrap
 			$self.$watch('attributes', ['src'], function(src) {
 				$self.$hitch(function() {
 					var img = new Image();
-					$self.status = 1;
+					$scope.$applyAsync(function() {
+						$self.status = 1;
+					});
 					img.onload = function() {
-
-						$self.status = 3;
-						$self.thumbSrc = src;
+						$scope.$applyAsync(function() {
+							$self.status = 3;
+							$self.thumbSrc = src;
+						});
 					};
 					img.onerror = function() {
-						$self.status = 2;
+						$scope.$applyAsync(function() {
+							$self.status = 2;
+						});
 					};
 					img.src = src;
+				});
+			});
+
+			/*
+			Watch width height
+			*/
+			$self.$watch('attributes', ['width', 'height'], function($element, width, height) {
+				if (width) $element.style.width = parseInt(width)+"px";
+				if (height) $element.style.height = parseInt(height)+"px";
+			});
+
+			/*
+			Watch model
+			*/
+			$self.$watch('attributes.ngModel', function(model) {
+				$self.model = model;
+				$self.$hitch(function() {
+					if (model)
+					return $self.$watch([model], function(src) {
+						var img = new Image();
+						$scope.$applyAsync(function() {
+							$self.status = 1;
+						});
+						img.onload = function() {
+							$scope.$applyAsync(function() {
+								$self.status = 3;
+								$self.thumbSrc = src;
+							});
+						};
+						img.onerror = function() {
+							$scope.$applyAsync(function() {
+								$self.status = 2;
+							});
+						};
+						img.src = src;
+					});
 				});
 			});
 		});
@@ -204,6 +263,61 @@ return /******/ (function(modules) { // webpackBootstrap
 				$scope.$evalAsync(function() { 
 					$self.thumbSrc = false;
 					$self.status = 0;
+				});
+			},
+			filemanager: function($self, $scope) {
+				var overlayer = document.createElement('DIV');
+				overlayer.className = 'nt-imgupl-overlayer';
+				// Create overlayer
+				document.body.appendChild(overlayer);
+
+				//
+				overlayerDiv = document.createElement('DIV');
+				overlayer.appendChild(overlayerDiv);
+
+				// Create nt-filemanager
+				var filemanager = document.createElement('nt-filemanager');
+				this.$fetch(['$config.filemanager'], function(cfg) {
+					
+					Synthetic(filemanager)
+					.$setup($.extend({
+						employer: function() {
+							
+
+								$scope.$eval($self.model+'=data', {
+									data: this.selected.simplify("url")[0]
+								});
+								$self.status = 3;
+								overlayer.remove();
+								$scope.$document.$digest();
+							
+						},
+						advancedButtons: [
+							{
+								title: "Закрыть окно",
+								className: 'pointable nt-filemanager__textbutton nt-filemanager__topbar__itemright',
+								click: function() {
+									overlayer.remove();
+								}
+							}
+						],
+						maxEmployCount: 1,
+						allowFilesUpload: true,
+						allowDelete: true,
+						allowCreateNewFolder: true
+					}, cfg));
+				});
+
+				overlayerDiv.appendChild(filemanager);
+
+				// Create button
+				var button = document.createElement('BUTTON');
+				button.innerHTML = 'Вернуться назад';
+
+				overlayerDiv.appendChild(button);
+				var component = this;
+				$(button).click(function() {
+					overlayer.remove();
 				});
 			}
 		});
@@ -244,7 +358,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	// module
-	exports.push([module.id, "@-webkit-keyframes ng-imgupl-spin-effect{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}\n@keyframes ng-imgupl-spin-effect{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}\n@-webkit-keyframes ng-imgupl-show-up {\n\t0% {\n\t    -webkit-transform: rotateY(90deg);\n\t            transform: rotateY(90deg);\n\t}\n\t100% {\n\t\t-webkit-transform: rotateY(0deg);\n\t\t        transform: rotateY(0deg);\n\t}\n}\n@keyframes ng-imgupl-show-up {\n\t0% {\n\t    -webkit-transform: rotateY(90deg);\n\t            transform: rotateY(90deg);\n\t}\n\t100% {\n\t\t-webkit-transform: rotateY(0deg);\n\t\t        transform: rotateY(0deg);\n\t}\n}\nnt-imgupl {\n\tdisplay:inline-block;\n\tmin-width: 100px;\n    min-height: 80px;\n    overflow: visible;\n    background-color: #DEDEDE;\n    position: relative;\n}\nnt-imgupl >div {position:absolute;min-width:100%;min-height: 100%;top:0;left:0;}\nnt-imgupl >div b {position: absolute;width: 100%;text-align: center;font-size: 10px;bottom: 10%;font-family: sans-serif;color: rgb(255, 255, 255);opacity:0;-webkit-transition:opacity 0.65s ease;transition:opacity 0.65s ease;}\nnt-imgupl >div >svg {opacity:0;-webkit-transition:opacity 0.65s ease;transition:opacity 0.65s ease;height: 40px;width: 40px;top:50%;left:50%;-webkit-transform:translateX(-50%) translateY(-50%);transform:translateX(-50%) translateY(-50%);}\nnt-imgupl svg {top:0px;left:0px;width: 100%;height: 100%;position: absolute;}\nnt-imgupl svg.nt-imgupl-forcevis {opacity:1;}\nnt-imgupl svg >use {width:50%;height:50%;color: transparent;fill: rgb(255, 255, 255);-webkit-transition:fill 0.65s ease;transition:fill 0.65s ease;}\nnt-imgupl svg >use.nt-imgupl-forcevis {opacity:1;}\nnt-imgupl >div >input[type=file] {position: absolute;top: 0%;left:0%;width:100%;height:100%;opacity:0;cursor:pointer;}\nnt-imgupl > img {min-width: 100%;max-width: 100%;min-height: 100%;max-height: 100%;display:block;}\nnt-imgupl .nt-imgupl-anim {-webkit-transform-origin:50% 50%;transform-origin:50% 50%;-webkit-animation: -webkit-ng-imgupl-spin-effect 1.5s linear infinite;animation: ng-imgupl-spin-effect 1.5s linear infinite;}\nnt-imgupl .nt-imgupl-dashboard {position:absolute;top:0;left:100%;width:20px;min-width:20px;-webkit-transform-origin: 0% 0%;transform-origin: 0% 0%;-webkit-perspective: 900;perspective: 900;-webkit-perspective-origin: 50% 0%;perspective-origin: 50% 0%;-webkit-transition:-webkit-transform 0.5s ease;transition:-webkit-transform 0.5s ease;transition:transform 0.5s ease;transition:transform 0.5s ease, -webkit-transform 0.5s ease;-webkit-transform: rotateY(90deg);transform: rotateY(90deg);}\nnt-imgupl .nt-imgupl-dashboard button {width: 20px;height: 20px;background-color:rgb(82, 82, 43);-webkit-transition:background 0.5s ease;transition:background 0.5s ease;border: 0px;margin: 0px;padding: 0px;position: relative;outline: none;cursor: pointer;}\nnt-imgupl:hover .nt-imgupl-dashboard {-webkit-animation-name: ng-imgupl-show-up;animation-name: ng-imgupl-show-up;-webkit-animation-iteration-count: 1;animation-iteration-count: 1;-webkit-animation-delay:0.25s;animation-delay:0.25s;-webkit-animation-fill-mode: forwards;animation-fill-mode: forwards;-webkit-animation-duration: 1s;animation-duration: 1s;-webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);}\nnt-imgupl:hover .nt-imgupl-dashboard button {background-color: rgb(212, 212, 76);}\nnt-imgupl:hover .nt-imgupl-dashboard button:hover {background-color:rgb(243, 243, 135);}\nnt-imgupl:hover >img {-webkit-filter: grayscale(100%);filter: grayscale(100%);}\nnt-imgupl:hover svg use {fill:rgb(255, 255, 255);}\nnt-imgupl:hover b {color:rgb(255, 255, 255);opacity:1;}\nnt-imgupl:hover >div svg {opacity:1;}", ""]);
+	exports.push([module.id, "@-webkit-keyframes ng-imgupl-spin-effect{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}\n@keyframes ng-imgupl-spin-effect{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}\n@-webkit-keyframes ng-imgupl-show-up {\n\t0% {\n\t    -webkit-transform: rotateY(90deg);\n\t            transform: rotateY(90deg);\n\t}\n\t100% {\n\t\t-webkit-transform: rotateY(0deg);\n\t\t        transform: rotateY(0deg);\n\t}\n}\n@keyframes ng-imgupl-show-up {\n\t0% {\n\t    -webkit-transform: rotateY(90deg);\n\t            transform: rotateY(90deg);\n\t}\n\t100% {\n\t\t-webkit-transform: rotateY(0deg);\n\t\t        transform: rotateY(0deg);\n\t}\n}\nnt-imgupl {\n\tdisplay:inline-block;\n\tmin-width: 100px;\n    min-height: 80px;\n    overflow: visible;\n    background-color: #DEDEDE;\n    position: relative;\n}\nnt-imgupl >div {position:absolute;min-width:100%;min-height: 100%;top:0;left:0;}\nnt-imgupl >div >button {position: absolute;top: 0;left: 0;width: 100%;height: 100%;opacity:0;}\nnt-imgupl >div b {position: absolute;width: 100%;text-align: center;font-size: 10px;bottom: 10%;font-family: sans-serif;color: rgb(255, 255, 255);opacity:0;-webkit-transition:opacity 0.65s ease;transition:opacity 0.65s ease;}\nnt-imgupl >div >svg {opacity:0;-webkit-transition:opacity 0.65s ease;transition:opacity 0.65s ease;height: 40px;width: 40px;top:50%;left:50%;-webkit-transform:translateX(-50%) translateY(-50%);transform:translateX(-50%) translateY(-50%);}\nnt-imgupl svg {top:0px;left:0px;width: 100%;height: 100%;position: absolute;}\nnt-imgupl svg.nt-imgupl-forcevis {opacity:1;}\nnt-imgupl svg >use {width:50%;height:50%;color: transparent;fill: rgb(255, 255, 255);-webkit-transition:fill 0.65s ease;transition:fill 0.65s ease;}\nnt-imgupl svg >use.nt-imgupl-forcevis {opacity:1;}\nnt-imgupl svg.nt-imgupl-error {opacity:1;}\nnt-imgupl svg.nt-imgupl-error >use {opacity:1;fill: #f66;}\nnt-imgupl >div >input[type=file] {position: absolute;top: 0%;left:0%;width:100%;height:100%;opacity:0;cursor:pointer;}\nnt-imgupl > img {min-width: 100%;max-width: 100%;min-height: 100%;max-height: 100%;display:block;}\nnt-imgupl .nt-imgupl-anim {-webkit-transform-origin:50% 50%;transform-origin:50% 50%;-webkit-animation: -webkit-ng-imgupl-spin-effect 1.5s linear infinite;animation: ng-imgupl-spin-effect 1.5s linear infinite;}\nnt-imgupl .nt-imgupl-dashboard {position:absolute;top:0;left:100%;width:20px;min-width:20px;-webkit-transform-origin: 0% 0%;transform-origin: 0% 0%;-webkit-perspective: 900;perspective: 900;-webkit-perspective-origin: 50% 0%;perspective-origin: 50% 0%;-webkit-transition:-webkit-transform 0.5s ease;transition:-webkit-transform 0.5s ease;transition:transform 0.5s ease;transition:transform 0.5s ease, -webkit-transform 0.5s ease;-webkit-transform: rotateY(90deg);transform: rotateY(90deg);}\nnt-imgupl .nt-imgupl-dashboard button {width: 20px;height: 20px;background-color:rgb(82, 82, 43);-webkit-transition:background 0.5s ease;transition:background 0.5s ease;border: 0px;margin: 0px;padding: 0px;position: relative;outline: none;cursor: pointer;}\nnt-imgupl:hover .nt-imgupl-dashboard {-webkit-animation-name: ng-imgupl-show-up;animation-name: ng-imgupl-show-up;-webkit-animation-iteration-count: 1;animation-iteration-count: 1;-webkit-animation-delay:0.25s;animation-delay:0.25s;-webkit-animation-fill-mode: forwards;animation-fill-mode: forwards;-webkit-animation-duration: 1s;animation-duration: 1s;-webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);}\nnt-imgupl:hover .nt-imgupl-dashboard button {background-color: rgb(212, 212, 76);}\nnt-imgupl:hover .nt-imgupl-dashboard button:hover {background-color:rgb(243, 243, 135);}\nnt-imgupl:hover >img {-webkit-filter: grayscale(100%);filter: grayscale(100%);}\nnt-imgupl:hover svg use {fill:rgb(255, 255, 255);}\nnt-imgupl:hover b {color:rgb(255, 255, 255);opacity:1;}\nnt-imgupl:hover >div svg {opacity:1;}\n\n.nt-imgupl-overlayer {\n\tposition: fixed;\n\ttop:0;\n\tleft:0;\n\twidth:100%;\n\theight:100%;\n\tz-index:99;\n\tbackground-color: rgba(0, 0, 0, 0.58);\n\tbox-shadow: -8px 7px 32px 0px rgba(0,0,0,0.75);\n}\n\n.nt-imgupl-overlayer >div {position: relative;top: 2.5%;left: 5%;width: 90%;height: 95%;background: white;box-sizing: border-box;padding: 0;z-index: 999;border-radius: 3px;overflow-y: scroll;}\n\n.nt-imgupl-overlayer >div >button {border:1px gray solid;line-height:30px;padding:0 15px;}", ""]);
 
 	// exports
 
@@ -563,7 +677,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 5 */
 /***/ function(module, exports) {
 
-	module.exports = "<img ng-if=\"$ngImgupl.thumbSrc\" ng-src=\"{{$ngImgupl.thumbSrc}}\" alt=\"\">\n<!-- If loading -->\n<div ng-show=\"$ngImgupl.status==1\">\n\n\t<svg class=\"nt-imgupl-forcevis\"><use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#ei-spinner-3-icon\" class=\"nt-imgupl-anim nt-imgupl-forcevis\"></use></svg>\n</div>\n<!-- If empty -->\n<div ng-show=\"$ngImgupl.status==0\">\n\t\n</div>\n<!-- If error -->\n<div ng-show=\"$ngImgupl.status==2\">\n\t<svg class=\"\"><use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#ei-image-icon\" class=\"nt-imgupl-error\" ></use></svg>\n\t\n</div>\n<!-- Controls -->\n<div class=\"nt-imgupl-dashboard\" ng-show=\"$ngImgupl.status===3\">\n\t<button ng-click=\"$ngImgupl.clear();\"><svg class=\"\"><use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#ei-close-icon\"></use></svg></button>\n</div>\n<div>\n\t<svg class=\"\"><use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#ei-image-icon\"></use></svg>\n\t\n\t<input type=\"file\" />\n</div>\n\n\n\n\n"
+	module.exports = "<img ng-if=\"$ngImgupl.thumbSrc\" ng-src=\"{{$ngImgupl.thumbSrc}}\" alt=\"\">\n<!-- If loading -->\n<div ng-show=\"$ngImgupl.status==1\">\n\n\t<svg class=\"nt-imgupl-forcevis\"><use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#ei-spinner-3-icon\" class=\"nt-imgupl-anim nt-imgupl-forcevis\"></use></svg>\n</div>\n<!-- If empty -->\n<div ng-show=\"$ngImgupl.status==0\">\n\t\n</div>\n\n<!-- Controls -->\n<div class=\"nt-imgupl-dashboard\" ng-show=\"$ngImgupl.status===3\">\n\t<button ng-click=\"$ngImgupl.clear();\"><svg class=\"\"><use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#ei-close-icon\"></use></svg></button>\n</div>\n<div>\n\t<svg class=\"\" ng-class=\"{'nt-imgupl-error': $ngImgupl.status==2}\"><use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#ei-image-icon\"></use></svg>\n\t<!--<input type=\"file\" />-->\n\t<button ng-click=\"$ngImgupl.filemanager();\"></button>\n</div>\n\n\n\n\n"
 
 /***/ },
 /* 6 */
