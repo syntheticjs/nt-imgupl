@@ -6,6 +6,7 @@ module.exports = {
 	entry: './src/nt-imgupl.js', // файл для сборки, если несколько - указываем hash (entry name => filename)
 	output: {
 		path: path.join(__dirname, 'dist'), // выходная директория
+		publicPath: "/public",
 		filename: 'nt-imgupl.js',
 		library: 'nt-imgupl',
 		libraryTarget: 'umd'
